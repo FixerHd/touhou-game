@@ -38,12 +38,12 @@ export default function MainMenu({
   const audioRef = useRef<HTMLAudioElement | null>(null)
     // Initialize audio
     useEffect(() => {
-      audioRef.current = new Audio("/bgm.mp3")
+      audioRef.current = new Audio("/menu.mp3")
       audioRef.current.loop = true
   
       return () => {
         if (audioRef.current) {
-          audioRef.current.pause()
+          audioRef.current.stop()
           audioRef.current = null
         }
       }
