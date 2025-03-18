@@ -43,8 +43,9 @@ export default function MainMenu({
   
       return () => {
         if (audioRef.current) {
-          audioRef.current.stop()
+          audioRef.current.pause()
           audioRef.current = null
+          audioRef.current.currentTime = 0;
         }
       }
     }, [])
