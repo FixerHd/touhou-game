@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Volume2, VolumeX } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 interface MainMenuProps {
   onPlay: () => void
@@ -19,6 +20,8 @@ interface MainMenuProps {
   onToggleMute: () => void
 }
 
+
+
 export default function MainMenu({
   onPlay,
   onInstructions,
@@ -32,6 +35,19 @@ export default function MainMenu({
   isMuted,
   onToggleMute,
 }: MainMenuProps) {
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+    // Initialize audio
+    useEffect(() => {
+      audioRef.current = new Audio("/bgm.mp3")
+      audioRef.current.loop = true
+  
+      return () => {
+        if (audioRef.current) {
+          audioRef.current.pause()
+          audioRef.current = null
+        }
+      }
+    }, [])
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 p-4">
       <div className="max-w-2xl w-full text-center mb-8">
