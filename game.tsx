@@ -46,8 +46,9 @@ export default function TouhouGame() {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause()
-        audioRef.current = null
         audioRef.current.currentTime = 0;
+        audioRef.current = null
+        
       }
     }
   }, [])
